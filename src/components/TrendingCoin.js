@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const TrendingCoin = ({ data }) => {
+const TrendingCoin = (props) => {
   let navigate = useNavigate();
-
+  let data = props.data;
+  console.log(props);
   const getCoinDetails = (id) => {
     navigate(`${id}`);
   };
@@ -14,51 +15,58 @@ const TrendingCoin = ({ data }) => {
       last:mb-0 rounded-lg p-4 relative cursor-pointer
       hover:bg-gray-100 hover:bg-opacity-40
       "
-      onClick={() => getCoinDetails(data.id)}
+      onClick={() => getCoinDetails(data)}
     >
-      {data ? (
+      {
+        data ? (
         <>
-          <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">name:&nbsp;</span>
+          <h2 className="txt-base flex items-center my-0.5">
+            {/* <span className="text-gray-100 capitalize">name:&nbsp;</span> */}
             <span className="text-cyan">{data.name}</span>
-            <img
+            {/* <img
               src={data.small}
               alt={data.name}
               className="w-[1.5rem] h-[1.5rem] mx-1.5 rounded-full"
-            />
-          </h3>
+            /> */}
+          </h2>
 
           <h3 className="txt-base flex items-center my-0.5">
             <span className="text-gray-100 capitalize">
-              market cap rank:&nbsp;
+              Height:&nbsp;
             </span>
-            <span className="text-cyan">{data.market_cap_rank}</span>
+            <span className="text-cyan">{data.height}</span>
           </h3>
           <h3 className="txt-base flex items-center my-0.5">
             <span className="text-gray-100 capitalize">
-              price (in btc):&nbsp;
+            High priority fee:&nbsp;
             </span>
             <span className="text-cyan">
-              {new Intl.NumberFormat("en-IN", {
-                style: "currency",
-                currency: "btc",
-                maximumSignificantDigits: 5,
-              }).format(data.price_btc)}
+          {data.high_priority_fee}
             </span>
           </h3>
 
           <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">score:&nbsp;</span>
-            <span className="text-cyan">{data.score}</span>
+            <span className="text-gray-100 capitalize">Medium priority fee:&nbsp;</span>
+            <span className="text-cyan">{data.medium_priority_fee}</span>
           </h3>
 
-          <img
+          <h3 className="txt-base flex items-center my-0.5">
+            <span className="text-gray-100 capitalize">Low priority fee:&nbsp;</span>
+            <span className="text-cyan">{data.low_priority_fee}</span>
+          </h3>
+
+          <h3 className="txt-base flex items-center my-0.5">
+            <span className="text-gray-100 capitalize">Base fee:&nbsp;</span>
+            <span className="text-cyan">{data.base_fee}</span>
+          </h3>
+
+          {/* <img
             src={data.large}
             alt={data.name}
             className="w-[35%] h-auto rounded-full absolute top-2/4 -right-12
 -translate-y-2/4
 "
-          />
+          /> */}
         </>
       ) : (
         <div
@@ -78,4 +86,4 @@ const TrendingCoin = ({ data }) => {
   );
 };
 
-export default TrendingCoin;
+export default TrendingCoin;      
